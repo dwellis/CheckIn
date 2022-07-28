@@ -3,7 +3,6 @@ package com.example.checkin.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -66,13 +65,10 @@ class UpdateAccount : AppCompatActivity() {
                 binding.createAccountBirthdayInput.setText(snapshot.child("accounts").child(Firebase.auth.currentUser?.uid.toString()).child("birthday").value.toString())
                 binding.createAccountEmailInput.setText(snapshot.child("accounts").child(Firebase.auth.currentUser?.uid.toString()).child("email").value.toString())
                 binding.createAccountAdminCheckbox.isChecked = snapshot.child("accounts").child(Firebase.auth.currentUser?.uid.toString()).child("admin").value.toString().toBoolean()
-
-
-                Log.d(TAG, "onDataChange: ${value.toString()}")
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.d(TAG, "onCancelled: Failed to read value")
+
             }
         })
     }

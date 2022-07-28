@@ -50,7 +50,6 @@ class UserForm : AppCompatActivity() {
                 override fun onDataChange(snapshot: DataSnapshot) {
 
                     val subscribedID = snapshot.child(Firebase.auth.uid.toString()).child("subscribed").value.toString()
-                    Log.d(TAG, "onDataChange: subscribed $subscribedID")
                     accounts.child(subscribedID).child("registers").child(Firebase.auth.uid.toString()).child("isFormComplete").setValue(true)
                     accounts.child(subscribedID).child("registers").child(Firebase.auth.uid.toString()).child("firstName").setValue(
                         binding.userFormFirstNameActv.text.toString()
@@ -78,7 +77,7 @@ class UserForm : AppCompatActivity() {
                 }
             })
 
-            account.child("isComplete").setValue(true)
+            account.child("isFormComplete").setValue(true)
 
             val intent = Intent(applicationContext, UserLanding::class.java)
             startActivity(intent)
@@ -93,6 +92,7 @@ class UserForm : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
+    @RequiresApi(Build.VERSION_CODES.S)
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         return when(item.itemId) {

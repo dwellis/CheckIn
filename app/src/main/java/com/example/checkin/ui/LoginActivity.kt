@@ -3,7 +3,6 @@ package com.example.checkin.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -45,7 +44,6 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.loginButtonCreateAccount.setOnClickListener {
-            Log.d(TAG, "Create account clicked")
             val intent = Intent(this, CreateAccount::class.java)
             startActivity(intent)
         }
@@ -123,7 +121,6 @@ class LoginActivity : AppCompatActivity() {
                     })
                 } else {
                     // If sign in fails, display a message to the user.
-                    Log.w(TAG, "signInWithEmail:failure", task.exception)
                     Toast.makeText(baseContext, "Authentication failed.", Toast.LENGTH_SHORT).show()
                 }
             }

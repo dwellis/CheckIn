@@ -3,7 +3,6 @@ package com.example.checkin.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -91,18 +90,14 @@ class ManageActivity : AppCompatActivity() {
         // Set up a PlaceSelectionListener to handle the response.
         autocompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
             override fun onPlaceSelected(place: Place) {
-                // TODO: Get info about the selected place.
                 id = place.id.toString()
                 name = place.name.toString()
                 address = place.address.toString()
                 lat = place.latLng?.latitude.toString()
                 lng = place.latLng?.longitude.toString()
-                Log.i(TAG, "Place: ${place.name}, ${place.id}, ${lat}, ${lng}")
             }
-
             override fun onError(status: Status) {
-                // TODO: Handle the error.
-                Log.i(TAG, "An error occurred: $status")
+
             }
         })
 

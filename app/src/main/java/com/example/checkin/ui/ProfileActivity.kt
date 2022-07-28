@@ -3,7 +3,6 @@ package com.example.checkin.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -65,12 +64,11 @@ class ProfileActivity : AppCompatActivity() {
                     }
                 }
 
-                Log.d(TAG, "onDataChange: ${value.toString()}")
             }
 
 
             override fun onCancelled(error: DatabaseError) {
-                Log.d(TAG, "onCancelled: Failed to read value")
+
             }
         })
 
@@ -139,7 +137,6 @@ class ProfileActivity : AppCompatActivity() {
             val emailAddress = Firebase.auth.currentUser!!.email.toString()
             Firebase.auth.sendPasswordResetEmail(emailAddress).addOnCompleteListener { task ->
                 if(task.isSuccessful) {
-                    Log.d(TAG, "Password reset email sent")
                     Toast.makeText(this,"Password reset email sent", Toast.LENGTH_SHORT )
                 }
             }
@@ -151,18 +148,13 @@ class ProfileActivity : AppCompatActivity() {
 
         user.delete().addOnCompleteListener { task ->
             if(task.isSuccessful) {
-                Log.d(TAG, "User account deleted.")
-
                 database.addValueEventListener(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         snapshot.child("accounts").child(Firebase.auth.currentUser?.uid.toString()).ref.removeValue()
-
-
-                        Log.d(TAG, "onDataChange: ${snapshot.child("accounts").child(Firebase.auth.currentUser?.uid.toString()).toString()} Removed")
                     }
 
                     override fun onCancelled(error: DatabaseError) {
-                        Log.d(TAG, "onCancelled: Failed to read value")
+
                     }
                 })
 

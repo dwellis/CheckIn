@@ -3,7 +3,6 @@ package com.example.checkin.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -92,7 +91,6 @@ class CreateAccount : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
-                    Log.d(TAG, "createUserWithEmail:success")
                     val user = auth.currentUser
 
                     Toast.makeText(this, "Welcome!", Toast.LENGTH_SHORT)
@@ -104,14 +102,13 @@ class CreateAccount : AppCompatActivity() {
                         auth.currentUser?.email.toString(),
                         binding.createAccountAdminCheckbox.isChecked)
                     database.child("accounts").child(auth.currentUser?.uid.toString()).setValue(account).addOnCompleteListener {
-                        Log.d(TAG, "Account Data Created")
+
                     }
 
                     var intent = Intent(this, ProfileActivity::class.java)
                     startActivity(intent)
                 } else {
                     // If sign in fails, display a message to the user.
-                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
                     // TODO: More information to the user for why they failed to create an account
                     Toast.makeText(baseContext, "Authentication failure",
                         Toast.LENGTH_SHORT).show()

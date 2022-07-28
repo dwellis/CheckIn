@@ -16,8 +16,10 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.11041666666666666" />
         <entry key="app/src/main/res/layout/activity_maps.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_see_info.xml" value="0.20018115942028986" />
         <entry key="app/src/main/res/layout/activity_update_account.xml" value="0.21875" />
         <entry key="app/src/main/res/layout/fragment_forms.xml" value="0.18802083333333333" />
+        <entry key="app/src/main/res/layout/register_card.xml" value="0.191796875" />
         <entry key="app/src/main/res/menu/main_menu.xml" value="0.11041666666666666" />
       </map>
     </option>

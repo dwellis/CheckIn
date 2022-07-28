@@ -1,14 +1,15 @@
 package com.example.checkin.ui
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.core.view.marginTop
 import com.example.checkin.R
 import com.example.checkin.databinding.ActivityAllLocationsBinding
@@ -47,10 +48,8 @@ class AllLocations : AppCompatActivity() {
         // for each location add a view and update if they complete the form
         locations.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                Log.d(TAG, "onDataChange: ${snapshot.childrenCount}")
                 if(snapshot.hasChildren()) {
                     snapshot.children.forEach {
-
                         // manually set for now
                         // TODO: Move into layout
                         val tvTitle = TextView(applicationContext)
@@ -94,6 +93,7 @@ class AllLocations : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
+    @RequiresApi(Build.VERSION_CODES.S)
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId) {
             R.id.main_menu_home -> {
